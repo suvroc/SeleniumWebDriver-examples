@@ -8,6 +8,9 @@ using System;
 using System.Threading;
 using System.Linq;
 using SeleniumWebDriver.Examples.Helpers;
+using OpenQA.Selenium.Interactions;
+using System.IO;
+using OpenQA.Selenium.Support.UI;
 
 namespace SeleniumWebDriver.Examples
 {
@@ -105,6 +108,180 @@ namespace SeleniumWebDriver.Examples
             {
                 sourceInput.Click();
             }
+
+            driver.Quit();
+        }
+
+        [Test]
+        public void ShouldFindText()
+        {
+            var driver = new ChromeDriver();
+
+            driver.Navigate().GoToUrl("https://en.wikipedia.org/wiki/Main_Page");
+
+            var source = driver.FindElement(By.Id("mp-left"));
+
+            var text = source.Text;
+
+            driver.Quit();
+        }
+
+        [Test]
+        public void ShouldContextClick()
+        {
+            var driver = new ChromeDriver();
+
+            driver.Navigate().GoToUrl("https://en.wikipedia.org/wiki/Main_Page");
+
+            var element = driver.FindElement(By.Id("searchInput"));
+
+            Actions action = new Actions(driver);
+            action.ContextClick(element)
+                .SendKeys(Keys.ArrowUp)
+                .SendKeys(Keys.Enter)
+                .Build()
+                .Perform();
+
+            driver.Quit();
+        }
+
+        [Test]
+        public void ShouldSearchAndEnter()
+        {
+            var driver = new ChromeDriver();
+
+            driver.Navigate().GoToUrl("https://en.wikipedia.org/wiki/Main_Page");
+
+            var element = driver.FindElement(By.Id("searchInput"));
+
+            element.SendKeys("cat");
+            element.SendKeys(Keys.Enter);
+
+            driver.Quit();
+        }
+
+        [Test]
+        public void ShouldSaveShortcut()
+        {
+            var driver = new ChromeDriver();
+
+            driver.Navigate().GoToUrl("https://en.wikipedia.org/wiki/Main_Page");
+
+            var element = driver.FindElement(By.Id("searchInput"));
+
+            Actions action = new Actions(driver);
+            var saveShortcut = action.ContextClick(element)
+                .KeyDown(Keys.Control)
+                .KeyDown("C")
+                .Build();
+
+            saveShortcut.Perform();
+            saveShortcut.Perform();
+
+            driver.Quit();
+        }
+
+        [Test]
+        public void ShouldUploadFile()
+        {
+            var driver = new ChromeDriver();
+
+            driver.Navigate().GoToUrl("http://postimage.org/");
+
+            var element = driver.FindElement(By.Id("file_upload"));
+
+            element.SendKeys(TestContext.CurrentContext.TestDirectory + "\\TestFiles\\TestFile.png");
+
+            driver.FindElement(By.Id("l_adult_no")).Click();
+
+            driver.FindElement(By.Id("btSubmit")).Click();
+
+            driver.Quit();
+        }
+
+        [Test]
+        public void ShouldTouch()
+        {
+            var driver = new ChromeDriver();
+
+            driver.Navigate().GoToUrl("https://en.wikipedia.org/wiki/Main_Page");
+
+            var element = driver.FindElement(By.Id("searchInput"));
+
+            TouchActions touchActions = new TouchActions(driver);
+            touchActions.SingleTap(element)
+                .Perform();            
+
+            driver.Quit();
+        }
+
+        [Test]
+        public void ShouldSelectItem()
+        {
+            var driver = new ChromeDriver();
+
+            driver.Navigate().GoToUrl("http://getbootstrap.com/css/");
+
+            var element = driver.FindElement(By.TagName("select"));
+
+            var selectElement = new SelectElement(element);
+
+            selectElement.SelectByText("2");
+            selectElement.SelectByValue("2");
+            selectElement.SelectByIndex(2);
+
+            selectElement.SelectByIndex(5);
+
+            driver.Quit();
+        }
+
+        [Test]
+        public void ShouldClearLocalStorageAndCookies()
+        {
+            var driver = new ChromeDriver();
+
+            driver.Navigate().GoToUrl("http://getbootstrap.com/css/");
+
+            driver.ExecuteScript("window.localStorage.clear();");
+            driver.Manage().Cookies.DeleteAllCookies();
+
+            var element = driver.FindElement(By.TagName("select"));
+
+            var selectElement = new SelectElement(element);
+
+            selectElement.SelectByText("2");
+            selectElement.SelectByValue("2");
+            selectElement.SelectByIndex(2);
+
+            selectElement.SelectByIndex(5);
+
+            driver.Quit();
+        }
+
+        [Test]
+        public void ShouldSetTimeouts()
+        {
+            var driver = new ChromeDriver();
+
+            driver.Navigate().GoToUrl("http://getbootstrap.com/css/");
+
+            driver.Manage().Timeouts()
+                .SetScriptTimeout(TimeSpan.FromSeconds(10));
+            driver.Manage().Timeouts()
+                .SetPageLoadTimeout(TimeSpan.FromSeconds(10));
+
+            driver.Quit();
+        }
+
+        [Test]
+        public void ShouldImplicitWait()
+        {
+            var driver = new ChromeDriver();
+
+            driver.Navigate().GoToUrl("http://getbootstrap.com/css/");
+
+            driver.Manage().Timeouts()
+                .ImplicitlyWait(TimeSpan.FromSeconds(10));
 
             driver.Quit();
         }
