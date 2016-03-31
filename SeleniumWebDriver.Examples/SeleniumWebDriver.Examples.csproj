@@ -57,6 +57,7 @@
     <Compile Include="BasicWebDriverTest.cs" />
     <Compile Include="Helpers\ListItem.cs" />
     <Compile Include="Helpers\NavigableButton.cs" />
+    <Compile Include="Helpers\WebDriverExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

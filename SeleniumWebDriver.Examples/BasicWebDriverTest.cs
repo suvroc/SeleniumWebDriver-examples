@@ -285,5 +285,50 @@ namespace SeleniumWebDriver.Examples
 
             driver.Quit();
         }
+
+        [Test]
+        public void ShouldExplicitWait()
+        {
+            var driver = new ChromeDriver();
+
+            driver.Navigate().GoToUrl("http://getbootstrap.com/css/");
+
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+
+            // TODO: fix id
+            wait.Until(ExpectedConditions.ElementToBeClickable(
+                By.Id("buttonId")));
+
+            driver.Quit();
+        }
+
+        [Test]
+        public void ShouldExplicitDynamicWait()
+        {
+            var driver = new ChromeDriver();
+
+            driver.Navigate().GoToUrl("http://getbootstrap.com/css/");
+
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            IWebElement myDynamicElement = wait.Until<IWebElement>((d) =>
+            {
+                // TODO: fix id
+                return d.FindElement(By.Id("someDynamicElement"));
+            });
+
+            driver.Quit();
+        }
+
+        [Test]
+        public void ShouldUseFindElementExtension()
+        {
+            var driver = new ChromeDriver();
+
+            driver.Navigate().GoToUrl("https://en.wikipedia.org/wiki/Main_Page");
+
+            var element = driver.FindElement(By.Id("searchInput"), 10);
+
+            driver.Quit();
+        }
     }
 }
