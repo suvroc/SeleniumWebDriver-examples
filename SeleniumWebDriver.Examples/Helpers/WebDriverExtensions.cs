@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
+using System.Drawing.Imaging;
 
 namespace SeleniumWebDriver.Examples.Helpers
 {
@@ -15,6 +16,13 @@ namespace SeleniumWebDriver.Examples.Helpers
                 return wait.Until(drv => drv.FindElement(by));
             }
             return driver.FindElement(by);
+        }
+
+        public static void TakeScreenshot(this IWebDriver chromeDriver, string testName)
+        {
+            OpenQA.Selenium.Support.Extensions.WebDriverExtensions.TakeScreenshot(chromeDriver)
+                .SaveAsFile(string.Format("{0}_{1:yyyy-MM-dd-hh-mm-ss}.acceptance-exception.png", testName, DateTime.Now),
+                    ImageFormat.Png);
         }
     }
 }

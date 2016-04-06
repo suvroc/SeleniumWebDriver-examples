@@ -330,5 +330,26 @@ namespace SeleniumWebDriver.Examples
 
             driver.Quit();
         }
+
+        [Test]
+        public void ShouldThrowException()
+        {
+            var driver = new ChromeDriver();
+            try
+            {
+                driver.Navigate().GoToUrl("https://en.wikipedia.org/wiki/Main_Page");
+                // ...
+                throw new NotFoundException("Test error");
+            }
+            catch (Exception ex)
+            {
+                driver.TakeScreenshot("ShouldThrowException");
+                throw;
+            }
+            finally
+            {
+                driver.Quit();
+            }
+        }
     }
 }
