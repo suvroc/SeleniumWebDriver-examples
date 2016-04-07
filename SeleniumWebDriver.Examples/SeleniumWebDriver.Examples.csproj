@@ -54,6 +54,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BasicNUnitTests.cs" />
+    <Compile Include="PageObjects\BasePageObject.cs" />
+    <Compile Include="PageObjects\NameScreenAttrPageObject.cs" />
+    <Compile Include="PageObjects\NameScreenPageObject.cs" />
     <Compile Include="WebDriverDoodleTest.cs" />
     <Compile Include="BasicWebDriverTest.cs" />
     <Compile Include="Helpers\ListItem.cs" />
