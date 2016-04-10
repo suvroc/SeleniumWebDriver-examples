@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BasicNUnitTests.cs" />
+    <Compile Include="PageObjectsAttributed\NameScreenPageObject.cs" />
     <Compile Include="PageObjects\BasePageObject.cs" />
     <Compile Include="PageObjects\NameScreenAttrPageObject.cs" />
     <Compile Include="PageObjects\NameScreenPageObject.cs" />
