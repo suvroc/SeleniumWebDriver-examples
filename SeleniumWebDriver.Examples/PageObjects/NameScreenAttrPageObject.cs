@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using SeleniumWebDriver.Examples.Helpers;
 
 namespace SeleniumWebDriver.Examples.PageObjects
 {
@@ -28,7 +29,31 @@ namespace SeleniumWebDriver.Examples.PageObjects
         [FindsBy(How = How.Id, Using = "back1")]
         public IWebElement BackButton { get; }
 
-        [FindsBy(How = How.Id, Using = "next1")]
-        public IWebElement NextButton { get; }
+        public NavigateButton<DateScreenPageObject> NextButton
+        {
+            get
+            {
+                return new NavigateButton<DateScreenPageObject>(Driver.FindElement(By.Id("next1")),
+                    () => new DateScreenPageObject(Driver));
+            }
+        }
+
+
+
+        public NameScreenAttrPageObject FillData(string title, string name, string email)
+        {
+            TitleInput.SendKeys(title);
+            YourNameInput.SendKeys(name);
+            EmailInput.SendKeys(email);
+
+            return this;
+        }
+
+        public DateScreenPageObject NavigateToNextPage()
+        {
+            //NextButton.Click();
+
+            return new DateScreenPageObject(Driver);
+        }
     }
 }
