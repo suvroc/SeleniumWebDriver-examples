@@ -37,6 +37,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -58,6 +59,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BasicNUnitTests.cs" />
+    <Compile Include="DatabaseQueries.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DatabaseQueries.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\DbManager.cs" />
     <Compile Include="PageObjectsAttributed\NameScreenPageObject.cs" />
     <Compile Include="PageObjects\BasePageObject.cs" />
     <Compile Include="PageObjects\DateScreenPageObject.cs" />
@@ -88,6 +95,9 @@
     <Content Include="dummy.txt" />
     <Content Include="README-IEDriver.txt" />
     <Content Include="Readme.txt" />
+    <None Include="TestFiles\RestoreSnapshot.sql" />
+    <None Include="TestFiles\DropSnapshot.sql" />
+    <None Include="TestFiles\CreateSnapshot.sql" />
     <None Include="SpecFlow\CreateDoodleFeature.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CreateDoodleFeature.feature.cs</LastGenOutput>
@@ -98,6 +108,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DatabaseQueries.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DatabaseQueries.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
