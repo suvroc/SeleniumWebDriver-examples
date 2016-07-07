@@ -69,7 +69,13 @@
     <Compile Include="PageObjects\BasePageObject.cs" />
     <Compile Include="PageObjects\DateScreenPageObject.cs" />
     <Compile Include="PageObjects\NameScreenAttrPageObject.cs" />
+    <Compile Include="PageObjects\NameScreenPageObjectDefinition.cs" />
     <Compile Include="PageObjects\NameScreenPageObject.cs" />
+    <Compile Include="SpecFlowFeature1.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SpecFlowFeature1.feature</DependentUpon>
+    </Compile>
     <Compile Include="SpecFlow\CreateDoodleFeature.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -95,6 +101,10 @@
     <Content Include="dummy.txt" />
     <Content Include="README-IEDriver.txt" />
     <Content Include="Readme.txt" />
+    <None Include="SpecFlowFeature1.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>SpecFlowFeature1.feature.cs</LastGenOutput>
+    </None>
     <None Include="TestFiles\RestoreSnapshot.sql" />
     <None Include="TestFiles\DropSnapshot.sql" />
     <None Include="TestFiles\CreateSnapshot.sql" />

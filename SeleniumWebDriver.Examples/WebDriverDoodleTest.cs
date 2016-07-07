@@ -1,15 +1,9 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.Remote;
-using OpenQA.Selenium.IE;
 using System;
 using System.Threading;
-using System.Linq;
 using SeleniumWebDriver.Examples.Helpers;
-using OpenQA.Selenium.Interactions;
-using System.IO;
 using OpenQA.Selenium.Support.UI;
 using NUnit.Framework.Interfaces;
 using SeleniumWebDriver.Examples.PageObjects;
@@ -20,7 +14,7 @@ namespace SeleniumWebDriver.Examples
     [TestFixture]
     public class WebDriverDoodleTest
     {
-        IWebDriver _driver;
+        private IWebDriver _driver;
 
         [SetUp]
         public void Initalize()
@@ -62,7 +56,7 @@ namespace SeleniumWebDriver.Examples
             _driver.FindElement(By.Id("next1"))
                 .Click();
 
-            var dateId = "cell" + DateTime.Now.ToString("yyyyMMdd");
+            var dateId = "cell" + DateTime.Now.ToString("yyyyMMdd") + " > div > div > button";
             var waitDriver = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
             waitDriver.Until(
                 ExpectedConditions.ElementToBeClickable(By.Id(dateId)));
