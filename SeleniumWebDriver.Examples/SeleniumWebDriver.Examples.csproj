@@ -62,35 +62,41 @@
     <Compile Include="Chapter04\Ch04WebDriverTest.cs" />
     <Compile Include="Chapter06\Ch06WebDriverTest.cs" />
     <Compile Include="Chapter07\Ch07WebDriverTest.cs" />
+    <Compile Include="Chapter07\Helpers\ListItem.cs" />
+    <Compile Include="Chapter09\BaseTestCase.cs" />
+    <Compile Include="Chapter09\BaseTestCasePersistent.cs" />
+    <Compile Include="Chapter08\Ch08WebDriverTest.cs" />
+    <Compile Include="Chapter09\BaseTestCaseWithDatabase.cs" />
+    <Compile Include="Chapter09\Ch09WebDriverTestWithDatabase.cs" />
+    <Compile Include="Chapter09\Ch09WebDriverPersistentTest.cs" />
+    <Compile Include="Chapter09\Ch09WebDriverTest.cs" />
+    <Compile Include="Chapter10\Ch10WebDriverTest.cs" />
+    <Compile Include="Chapter10\WebDriverExtensions.cs" />
+    <Compile Include="Chapter11\BaseScreenshotTestCase.cs" />
+    <Compile Include="Chapter11\Ch11WebDriverTest.cs" />
+    <Compile Include="Chapter13\PageObjects\Base\FluentBasePageObject.cs" />
+    <Compile Include="Chapter13\PageObjects\INameScreenPageObject.cs" />
+    <Compile Include="Chapter13\WebDriverDoodleTest.cs" />
+    <Compile Include="Chapter14\WebDriverDoodleTest.cs" />
     <Compile Include="DatabaseQueries.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DatabaseQueries.resx</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\DbManager.cs" />
+    <Compile Include="Chapter09\DbManager.cs" />
     <Compile Include="PageObjectsAttributed\NameScreenPageObject.cs" />
-    <Compile Include="PageObjects\BasePageObject.cs" />
-    <Compile Include="PageObjects\DateScreenPageObject.cs" />
-    <Compile Include="PageObjects\NameScreenAttrPageObject.cs" />
-    <Compile Include="PageObjects\NameScreenPageObjectDefinition.cs" />
-    <Compile Include="PageObjects\NameScreenPageObject.cs" />
-    <Compile Include="SpecFlowFeature1.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SpecFlowFeature1.feature</DependentUpon>
-    </Compile>
-    <Compile Include="SpecFlow\CreateDoodleFeature.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CreateDoodleFeature.feature</DependentUpon>
-    </Compile>
-    <Compile Include="SpecFlow\CreateDoodleStepDefinition.cs" />
-    <Compile Include="WebDriverDoodleTest.cs" />
+    <Compile Include="Chapter13\PageObjects\Base\BasePageObject.cs" />
+    <Compile Include="Chapter13\PageObjects\DateScreenPageObject.cs" />
+    <Compile Include="Chapter13\PageObjects\NameScreenAttrPageObject.cs" />
+    <Compile Include="Chapter13\PageObjects\NameScreenPageObjectDefinition.cs" />
+    <Compile Include="Chapter13\PageObjects\NameScreenPageObject.cs" />
+    <Compile Include="Chapter15\SpecFlow\CreateDoodleStepDefinition.cs" />
+    <Compile Include="Chapter12\WebDriverDoodleTest.cs" />
     <Compile Include="BasicWebDriverTest.cs" />
-    <Compile Include="Helpers\ListItem.cs" />
-    <Compile Include="Helpers\NavigableButton.cs" />
-    <Compile Include="Helpers\WebDriverExtensions.cs" />
+    <Compile Include="Chapter13\Helpers\NavigableButton.cs" />
+    <Compile Include="Chapter11\WebDriverExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebDriverDoodleTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -101,19 +107,14 @@
       <Link>chromedriver.exe</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="dummy.txt" />
-    <Content Include="README-IEDriver.txt" />
-    <Content Include="Readme.txt" />
-    <None Include="SpecFlowFeature1.feature">
+    <None Include="Chapter15\SpecFlowFeature1.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>SpecFlowFeature1.feature.cs</LastGenOutput>
     </None>
     <None Include="TestFiles\RestoreSnapshot.sql" />
     <None Include="TestFiles\DropSnapshot.sql" />
     <None Include="TestFiles\CreateSnapshot.sql" />
-    <None Include="SpecFlow\CreateDoodleFeature.feature">
+    <None Include="Chapter15\SpecFlow\CreateDoodleFeature.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CreateDoodleFeature.feature.cs</LastGenOutput>
     </None>
     <None Include="TestFiles\TestFile.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

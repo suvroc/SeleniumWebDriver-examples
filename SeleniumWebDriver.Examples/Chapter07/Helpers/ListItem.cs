@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 
-namespace SeleniumWebDriver.Examples.Helpers
+namespace SeleniumWebDriver.Examples.Chapter07.Helpers
 {
     public class ListItem
     {

@@ -1,10 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SeleniumWebDriver.Examples.PageObjects
 {
@@ -14,9 +10,10 @@ namespace SeleniumWebDriver.Examples.PageObjects
         {
             Driver = driver;
             PageFactory.InitElements(this, new RetryingElementLocator(driver, TimeSpan.FromSeconds(10)));
-            
         }
 
         public IWebDriver Driver { get; set; }
+
+
     }
 }

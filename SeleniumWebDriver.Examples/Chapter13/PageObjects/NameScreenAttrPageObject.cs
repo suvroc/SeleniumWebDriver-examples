@@ -1,10 +1,12 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using SeleniumWebDriver.Examples.Helpers;
+using SeleniumWebDriver.Examples.PageObjects;
 
 namespace SeleniumWebDriver.Examples.PageObjects
 {
-    public class NameScreenAttrPageObject : BasePageObject
+    public class NameScreenAttrPageObject : 
+        FluentBasePageObject<NameScreenAttrPageObject>, INameScreenPageObject
     {
         public NameScreenAttrPageObject(IWebDriver driver)
             : base(driver)
@@ -37,8 +39,6 @@ namespace SeleniumWebDriver.Examples.PageObjects
                     () => new DateScreenPageObject(Driver));
             }
         }
-
-
 
         public NameScreenAttrPageObject FillData(string title, string name, string email)
         {

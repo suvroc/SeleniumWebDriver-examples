@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.IO;
-using System.Linq;
-using System.Resources;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace SeleniumWebDriver.Examples.Helpers
+namespace SeleniumWebDriver.Examples.Chapter09
 {
     public class DbManager
     {

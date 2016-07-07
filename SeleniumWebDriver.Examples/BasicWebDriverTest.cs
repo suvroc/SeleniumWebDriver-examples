@@ -11,6 +11,10 @@ using SeleniumWebDriver.Examples.Helpers;
 using OpenQA.Selenium.Interactions;
 using System.IO;
 using OpenQA.Selenium.Support.UI;
+using SeleniumWebDriver.Examples.Chapter07.Helpers;
+using OpenQA.Selenium.Support.Extensions;
+using SeleniumWebDriver.Examples.Chapter11;
+using SeleniumWebDriver.Examples.Chapter10;
 
 namespace SeleniumWebDriver.Examples
 {

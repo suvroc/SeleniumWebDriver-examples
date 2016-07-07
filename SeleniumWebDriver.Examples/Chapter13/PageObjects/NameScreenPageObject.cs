@@ -2,7 +2,8 @@
 
 namespace SeleniumWebDriver.Examples.PageObjects
 {
-    public class NameScreenPageObject : BasePageObject
+    public class NameScreenPageObject : 
+        BasePageObject, INameScreenPageObject
     {
         public NameScreenPageObject(IWebDriver driver)
             : base(driver)
