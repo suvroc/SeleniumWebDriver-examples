@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace SeleniumWebDriver.Examples
+namespace SeleniumWebDriver.Examples.Chapter04
 {
     [TestFixture]
     public class BasicNUnitTests
