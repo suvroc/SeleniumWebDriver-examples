@@ -58,7 +58,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BasicNUnitTests.cs" />
+    <Compile Include="Chapter04\BasicNUnitTests.cs" />
+    <Compile Include="Chapter04\Ch04WebDriverTest.cs" />
+    <Compile Include="Chapter06\Ch06WebDriverTest.cs" />
+    <Compile Include="Chapter07\Ch07WebDriverTest.cs" />
     <Compile Include="DatabaseQueries.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -115,6 +118,7 @@
       <LastGenOutput>DatabaseQueries.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
