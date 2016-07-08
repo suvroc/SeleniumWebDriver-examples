@@ -2,7 +2,6 @@
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using SeleniumWebDriver.Examples.Helpers;
 using SeleniumWebDriver.Examples.Chapter07.Helpers;
 
 namespace SeleniumWebDriver.Examples.Chapter07
@@ -10,6 +9,34 @@ namespace SeleniumWebDriver.Examples.Chapter07
     [TestFixture]
     public class Ch07WebDriverTest
     {
+        [Test]
+        public void ShouldGetElementByClassName()
+        {
+            var driver = new ChromeDriver();
+
+            driver.Navigate().GoToUrl("http://doodle.com/en_GB/");
+
+            var element = driver.FindElement(By.ClassName("contentPart"));
+
+            Assert.IsTrue(element.Text == "Doodle simplifies scheduling");
+
+            driver.Quit();
+        }
+
+        [Test]
+        public void ShouldGetElementByCss()
+        {
+            var driver = new ChromeDriver();
+
+            driver.Navigate().GoToUrl("http://doodle.com/en_GB/");
+
+            var element = driver.FindElement(By.CssSelector("#doodleExample > div.wizardOrExample.spaceBBefore > a"));
+
+            Assert.IsTrue(element.Text == "View example");
+
+            driver.Quit();
+        }
+
         [Test]
         public void ShouldGetElementById()
         {
@@ -25,15 +52,29 @@ namespace SeleniumWebDriver.Examples.Chapter07
         }
 
         [Test]
-        public void ShouldGetElementByClassName()
+        public void ShouldGetElementByJavaScript()
         {
             var driver = new ChromeDriver();
 
             driver.Navigate().GoToUrl("http://doodle.com/en_GB/");
 
-            var element = driver.FindElement(By.ClassName("contentPart"));
+            var element = (IWebElement) ((IJavaScriptExecutor) driver).ExecuteScript("return $('#createExample')[0]");
 
-            Assert.IsTrue(element.Text == "Doodle simplifies scheduling");
+            Assert.IsTrue(element.Text == "Schedule an event");
+
+            driver.Quit();
+        }
+
+        [Test]
+        public void ShouldGetElementByLinkText()
+        {
+            var driver = new ChromeDriver();
+
+            driver.Navigate().GoToUrl("http://doodle.com/en_GB/");
+
+            var element = driver.FindElement(By.LinkText("Schedule an event"));
+
+            Assert.IsTrue(element.Text.Trim() == "Schedule an event");
 
             driver.Quit();
         }
@@ -53,15 +94,15 @@ namespace SeleniumWebDriver.Examples.Chapter07
         }
 
         [Test]
-        public void ShouldGetElementByCss()
+        public void ShouldGetElementByPartialLinkText()
         {
             var driver = new ChromeDriver();
 
             driver.Navigate().GoToUrl("http://doodle.com/en_GB/");
 
-            var element = driver.FindElement(By.CssSelector("#doodleExample > div.wizardOrExample.spaceBBefore > a"));
+            var element = driver.FindElement(By.PartialLinkText("Schedule"));
 
-            Assert.IsTrue(element.Text == "View example");
+            Assert.IsTrue(element.Text == "Schedule an event");
 
             driver.Quit();
         }
@@ -90,48 +131,6 @@ namespace SeleniumWebDriver.Examples.Chapter07
             var element = driver.FindElement(By.XPath("//*[@id='doodleExample']/div[1]/a"));
 
             Assert.IsTrue(element.Text == "");
-
-            driver.Quit();
-        }
-
-        [Test]
-        public void ShouldGetElementByLinkText()
-        {
-            var driver = new ChromeDriver();
-
-            driver.Navigate().GoToUrl("http://doodle.com/en_GB/");
-
-            var element = driver.FindElement(By.LinkText("Schedule an event"));
-
-            Assert.IsTrue(element.Text.Trim() == "Schedule an event");
-
-            driver.Quit();
-        }
-
-        [Test]
-        public void ShouldGetElementByPartialLinkText()
-        {
-            var driver = new ChromeDriver();
-
-            driver.Navigate().GoToUrl("http://doodle.com/en_GB/");
-
-            var element = driver.FindElement(By.PartialLinkText("Schedule"));
-
-            Assert.IsTrue(element.Text == "Schedule an event");
-
-            driver.Quit();
-        }
-
-        [Test]
-        public void ShouldGetElementByJavaScript()
-        {
-            var driver = new ChromeDriver();
-
-            driver.Navigate().GoToUrl("http://doodle.com/en_GB/");
-
-            var element = (IWebElement)((IJavaScriptExecutor)driver).ExecuteScript("return $('#createExample')[0]");
-
-            Assert.IsTrue(element.Text == "Schedule an event");
 
             driver.Quit();
         }

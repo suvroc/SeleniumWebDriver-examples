@@ -1,8 +1,9 @@
 ﻿using OpenQA.Selenium;
+using SeleniumWebDriver.Examples.Chapter13.PageObjects.Base;
 
-namespace SeleniumWebDriver.Examples.PageObjects
+namespace SeleniumWebDriver.Examples.Chapter13.PageObjects
 {
-    public class NameScreenPageObject : 
+    public class NameScreenPageObject :
         BasePageObject, INameScreenPageObject
     {
         public NameScreenPageObject(IWebDriver driver)
@@ -10,60 +11,39 @@ namespace SeleniumWebDriver.Examples.PageObjects
         {
         }
 
+        public IWebElement NextButton
+        {
+            get { return Driver.FindElement(By.Id("next1")); }
+        }
+
         public IWebElement TitleInput
         {
-            get
-            {
-                return Driver.FindElement(By.Id("title"));
-            }
+            get { return Driver.FindElement(By.Id("title")); }
         }
 
         public IWebElement LocationInput
         {
-            get
-            {
-                return Driver.FindElement(By.Id("location"));
-            }
+            get { return Driver.FindElement(By.Id("location")); }
         }
 
         public IWebElement DescriptionInput
         {
-            get
-            {
-                return Driver.FindElement(By.Id("description"));
-            }
+            get { return Driver.FindElement(By.Id("description")); }
         }
 
         public IWebElement YourNameInput
         {
-            get
-            {
-                return Driver.FindElement(By.Id("initiatorAlias"));
-            }
+            get { return Driver.FindElement(By.Id("initiatorAlias")); }
         }
 
         public IWebElement EmailInput
         {
-            get
-            {
-                return Driver.FindElement(By.Id("initiatorEmail"));
-            }
+            get { return Driver.FindElement(By.Id("initiatorEmail")); }
         }
 
         public IWebElement BackButton
         {
-            get
-            {
-                return Driver.FindElement(By.Id("back1"));
-            }
-        }
-
-        public IWebElement NextButton
-        {
-            get
-            {
-                return Driver.FindElement(By.Id("next1"));
-            }
+            get { return Driver.FindElement(By.Id("back1")); }
         }
     }
 }

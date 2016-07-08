@@ -1,20 +1,18 @@
-﻿
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 
-namespace SeleniumWebDriver.Examples.PageObjects
+namespace SeleniumWebDriver.Examples.Chapter13.PageObjects
 {
-
     public interface INameScreenPageObject
     {
         IWebElement TitleInput { get; }
 
         IWebElement LocationInput { get; }
 
-        IWebElement DescriptionInput { get;}
+        IWebElement DescriptionInput { get; }
 
-        IWebElement YourNameInput { get;}
+        IWebElement YourNameInput { get; }
 
-        IWebElement EmailInput { get;}
+        IWebElement EmailInput { get; }
 
         IWebElement BackButton { get; }
     }

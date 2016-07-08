@@ -6,13 +6,9 @@ namespace SeleniumWebDriver.Examples.Chapter09
 {
     public abstract class BaseTestCasePersistent
     {
-        private IWebDriver _driver;
         private IWebDriver _chromeDriver;
 
-        protected IWebDriver Driver
-        {
-            get { return this._driver; }
-        }
+        protected IWebDriver Driver { get; }
 
         [OneTimeSetUp]
         public void Initalize()

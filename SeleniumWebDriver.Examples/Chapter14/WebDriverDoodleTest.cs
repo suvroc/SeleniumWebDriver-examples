@@ -1,22 +1,17 @@
-﻿using NUnit.Framework;
+﻿using System;
+using System.Collections;
+using NUnit.Framework;
+using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using System;
-using System.Threading;
-using OpenQA.Selenium.Support.UI;
-using NUnit.Framework.Interfaces;
-using SeleniumWebDriver.Examples.PageObjects;
-using System.Collections;
-using OpenQA.Selenium.Support.Extensions;
 using SeleniumWebDriver.Examples.Chapter11;
+using SeleniumWebDriver.Examples.Chapter13.PageObjects;
 
 namespace SeleniumWebDriver.Examples.Chapter14
 {
     [TestFixture]
     public class WebDriverDoodleTest
     {
-        private IWebDriver _driver;
-
         [SetUp]
         public void Initalize()
         {
@@ -34,6 +29,27 @@ namespace SeleniumWebDriver.Examples.Chapter14
             }
 
             _driver.Quit();
+        }
+
+        private IWebDriver _driver;
+
+        public IEnumerable TestCases
+        {
+            get
+            {
+                yield return new TestCaseData(
+                    "Diwebsity test doodle", "Diwebsity tester",
+                    "seleniumTester@diwebsity.com")
+                    .Returns("/create#dates");
+                yield return new TestCaseData(
+                    "Another title", "Another name",
+                    "Another_email@mail.comm")
+                    .Returns("/create#dates");
+                yield return new TestCaseData(
+                    "Another title", "Another name",
+                    "wrong email")
+                    .Returns("/create#");
+            }
         }
 
         [Test]
@@ -54,14 +70,15 @@ namespace SeleniumWebDriver.Examples.Chapter14
 
             nameScreenPageObject
                 .FillData(title,
-                name,
-                email)
+                    name,
+                    email)
                 .NextButton.Navigate();
 
             if (goToNextPage)
             {
                 Assert.IsTrue(_driver.Url.EndsWith("/create#dates"));
-            } else
+            }
+            else
             {
                 Assert.IsTrue(_driver.Url.EndsWith("/create#"));
             }
@@ -83,31 +100,11 @@ namespace SeleniumWebDriver.Examples.Chapter14
 
             nameScreenPageObject
                 .FillData(title,
-                name,
-                email)
+                    name,
+                    email)
                 .NextButton.Navigate();
 
-            return _driver.Url.Substring(_driver.Url.LastIndexOf('/')); 
-
-        }
-
-        public IEnumerable TestCases
-        {
-            get
-            {
-                yield return new TestCaseData(
-                    "Diwebsity test doodle", "Diwebsity tester", 
-                    "seleniumTester@diwebsity.com")
-                    .Returns("/create#dates");
-                yield return new TestCaseData(
-                    "Another title", "Another name", 
-                    "Another_email@mail.comm")
-                    .Returns("/create#dates");
-                yield return new TestCaseData(
-                    "Another title", "Another name", 
-                    "wrong email")
-                    .Returns("/create#");
-            }
+            return _driver.Url.Substring(_driver.Url.LastIndexOf('/'));
         }
     }
 }

@@ -1,8 +1,8 @@
-﻿using OpenQA.Selenium;
+﻿using System;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
-using System;
 
-namespace SeleniumWebDriver.Examples.PageObjects
+namespace SeleniumWebDriver.Examples.Chapter13.PageObjects.Base
 {
     public abstract class BasePageObject
     {
@@ -13,7 +13,5 @@ namespace SeleniumWebDriver.Examples.PageObjects
         }
 
         public IWebDriver Driver { get; set; }
-
-
     }
 }

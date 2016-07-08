@@ -1,16 +1,25 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
-using SeleniumWebDriver.Examples.Helpers;
-using SeleniumWebDriver.Examples.PageObjects;
+using SeleniumWebDriver.Examples.Chapter13.Helpers;
+using SeleniumWebDriver.Examples.Chapter13.PageObjects.Base;
 
-namespace SeleniumWebDriver.Examples.PageObjects
+namespace SeleniumWebDriver.Examples.Chapter13.PageObjects
 {
-    public class NameScreenAttrPageObject : 
+    public class NameScreenAttrPageObject :
         FluentBasePageObject<NameScreenAttrPageObject>, INameScreenPageObject
     {
         public NameScreenAttrPageObject(IWebDriver driver)
             : base(driver)
         {
+        }
+
+        public NavigateButton<DateScreenPageObject> NextButton
+        {
+            get
+            {
+                return new NavigateButton<DateScreenPageObject>(Driver.FindElement(By.Id("next1")),
+                    () => new DateScreenPageObject(Driver));
+            }
         }
 
         [FindsBy(How = How.Id, Using = "title")]
@@ -30,15 +39,6 @@ namespace SeleniumWebDriver.Examples.PageObjects
 
         [FindsBy(How = How.Id, Using = "back1")]
         public IWebElement BackButton { get; }
-
-        public NavigateButton<DateScreenPageObject> NextButton
-        {
-            get
-            {
-                return new NavigateButton<DateScreenPageObject>(Driver.FindElement(By.Id("next1")),
-                    () => new DateScreenPageObject(Driver));
-            }
-        }
 
         public NameScreenAttrPageObject FillData(string title, string name, string email)
         {

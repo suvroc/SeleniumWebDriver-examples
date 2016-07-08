@@ -50,6 +50,46 @@ namespace SeleniumWebDriver.Examples.Chapter08
         }
 
         [Test]
+        public void ShouldContextClick()
+        {
+            var driver = new ChromeDriver();
+
+            driver.Navigate().GoToUrl("https://en.wikipedia.org/wiki/Main_Page");
+
+            var element = driver.FindElement(By.Id("searchInput"));
+
+            var action = new Actions(driver);
+            action.ContextClick(element)
+                .SendKeys(Keys.ArrowUp)
+                .SendKeys(Keys.Enter)
+                .Build()
+                .Perform();
+
+            driver.Quit();
+        }
+
+        [Test]
+        public void ShouldCopyShortcut()
+        {
+            var driver = new ChromeDriver();
+
+            driver.Navigate().GoToUrl("https://en.wikipedia.org/wiki/Main_Page");
+
+            var element = driver.FindElement(By.Id("searchInput"));
+
+            var action = new Actions(driver);
+            var saveShortcut = action.ContextClick(element)
+                .KeyDown(Keys.Control)
+                .KeyDown("C")
+                .Build();
+
+            saveShortcut.Perform();
+            saveShortcut.Perform();
+
+            driver.Quit();
+        }
+
+        [Test]
         public void ShouldFindText()
         {
             var driver = new ChromeDriver();
@@ -59,6 +99,26 @@ namespace SeleniumWebDriver.Examples.Chapter08
             var source = driver.FindElement(By.Id("mp-left"));
 
             var text = source.Text;
+
+            driver.Quit();
+        }
+
+        [Test]
+        public void ShouldSaveShortcut()
+        {
+            var driver = new ChromeDriver();
+
+            driver.Navigate().GoToUrl("https://en.wikipedia.org/wiki/Main_Page");
+
+            var element = driver.FindElement(By.Id("searchInput"));
+
+            var action = new Actions(driver);
+            var saveShortcut = action.ContextClick(element)
+                .KeyDown(Keys.Control)
+                .KeyDown("S")
+                .Build();
+
+            saveShortcut.Perform();
 
             driver.Quit();
         }
@@ -79,95 +139,21 @@ namespace SeleniumWebDriver.Examples.Chapter08
         }
 
         [Test]
-        public void ShouldSaveShortcut()
+        public void ShouldSelectItem()
         {
             var driver = new ChromeDriver();
 
-            driver.Navigate().GoToUrl("https://en.wikipedia.org/wiki/Main_Page");
+            driver.Navigate().GoToUrl("http://getbootstrap.com/css/");
 
-            var element = driver.FindElement(By.Id("searchInput"));
+            var element = driver.FindElement(By.TagName("select"));
 
-            Actions action = new Actions(driver);
-            var saveShortcut = action.ContextClick(element)
-                .KeyDown(Keys.Control)
-                .KeyDown("S")
-                .Build();
+            var selectElement = new SelectElement(element);
 
-            saveShortcut.Perform();
+            selectElement.SelectByText("2");
+            selectElement.SelectByValue("2");
+            selectElement.SelectByIndex(2);
 
-            driver.Quit();
-        }
-
-        [Test]
-        public void ShouldCopyShortcut()
-        {
-            var driver = new ChromeDriver();
-
-            driver.Navigate().GoToUrl("https://en.wikipedia.org/wiki/Main_Page");
-
-            var element = driver.FindElement(By.Id("searchInput"));
-
-            Actions action = new Actions(driver);
-            var saveShortcut = action.ContextClick(element)
-                .KeyDown(Keys.Control)
-                .KeyDown("C")
-                .Build();
-
-            saveShortcut.Perform();
-            saveShortcut.Perform();
-
-            driver.Quit();
-        }
-
-        [Test]
-        public void ShouldContextClick()
-        {
-            var driver = new ChromeDriver();
-
-            driver.Navigate().GoToUrl("https://en.wikipedia.org/wiki/Main_Page");
-
-            var element = driver.FindElement(By.Id("searchInput"));
-
-            Actions action = new Actions(driver);
-            action.ContextClick(element)
-                .SendKeys(Keys.ArrowUp)
-                .SendKeys(Keys.Enter)
-                .Build()
-                .Perform();
-
-            driver.Quit();
-        }
-
-        [Test]
-        public void ShouldUploadFile()
-        {
-            var driver = new ChromeDriver();
-
-            driver.Navigate().GoToUrl("http://postimage.org/");
-
-            var element = driver.FindElement(By.Id("file_upload"));
-
-            element.SendKeys(TestContext.CurrentContext.TestDirectory + "\\TestFiles\\TestFile.png");
-
-            driver.FindElement(By.Id("l_adult_no")).Click();
-
-            driver.FindElement(By.Id("btSubmit")).Click();
-
-            driver.Quit();
-        }
-
-        [Test]
-        public void ShouldTouch()
-        {
-            var driver = new ChromeDriver();
-
-            driver.Navigate().GoToUrl("https://en.wikipedia.org/wiki/Main_Page");
-
-            var element = driver.FindElement(By.Id("searchInput"));
-
-            TouchActions touchActions = new TouchActions(driver);
-            touchActions.SingleTap(element)
-                .Perform();
+            selectElement.SelectByIndex(5);
 
             driver.Quit();
         }
@@ -192,21 +178,35 @@ namespace SeleniumWebDriver.Examples.Chapter08
         }
 
         [Test]
-        public void ShouldSelectItem()
+        public void ShouldTouch()
         {
             var driver = new ChromeDriver();
 
-            driver.Navigate().GoToUrl("http://getbootstrap.com/css/");
+            driver.Navigate().GoToUrl("https://en.wikipedia.org/wiki/Main_Page");
 
-            var element = driver.FindElement(By.TagName("select"));
+            var element = driver.FindElement(By.Id("searchInput"));
 
-            var selectElement = new SelectElement(element);
+            var touchActions = new TouchActions(driver);
+            touchActions.SingleTap(element)
+                .Perform();
 
-            selectElement.SelectByText("2");
-            selectElement.SelectByValue("2");
-            selectElement.SelectByIndex(2);
+            driver.Quit();
+        }
 
-            selectElement.SelectByIndex(5);
+        [Test]
+        public void ShouldUploadFile()
+        {
+            var driver = new ChromeDriver();
+
+            driver.Navigate().GoToUrl("http://postimage.org/");
+
+            var element = driver.FindElement(By.Id("file_upload"));
+
+            element.SendKeys(TestContext.CurrentContext.TestDirectory + "\\TestFiles\\TestFile.png");
+
+            driver.FindElement(By.Id("l_adult_no")).Click();
+
+            driver.FindElement(By.Id("btSubmit")).Click();
 
             driver.Quit();
         }

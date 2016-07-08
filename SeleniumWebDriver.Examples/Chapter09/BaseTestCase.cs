@@ -6,24 +6,19 @@ namespace SeleniumWebDriver.Examples.Chapter09
 {
     public abstract class BaseTestCase
     {
-        private IWebDriver _driver;
-
-        protected IWebDriver Driver
-        {
-            get { return this._driver; }
-        }
+        protected IWebDriver Driver { get; private set; }
 
         [SetUp]
         public void Initalize()
         {
-            _driver = new ChromeDriver();
+            Driver = new ChromeDriver();
         }
 
         [TearDown]
         public void TearDown()
         {
-            _driver.Quit();
-            _driver = null;
+            Driver.Quit();
+            Driver = null;
         }
     }
 }
