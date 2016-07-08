@@ -84,7 +84,6 @@
       <DependentUpon>DatabaseQueries.resx</DependentUpon>
     </Compile>
     <Compile Include="Chapter09\DbManager.cs" />
-    <Compile Include="PageObjectsAttributed\NameScreenPageObject.cs" />
     <Compile Include="Chapter13\PageObjects\Base\BasePageObject.cs" />
     <Compile Include="Chapter13\PageObjects\DateScreenPageObject.cs" />
     <Compile Include="Chapter13\PageObjects\NameScreenAttrPageObject.cs" />
@@ -92,15 +91,17 @@
     <Compile Include="Chapter13\PageObjects\NameScreenPageObject.cs" />
     <Compile Include="Chapter15\SpecFlow\CreateDoodleStepDefinition.cs" />
     <Compile Include="Chapter12\WebDriverDoodleTest.cs" />
-    <Compile Include="BasicWebDriverTest.cs" />
     <Compile Include="Chapter13\Helpers\NavigableButton.cs" />
     <Compile Include="Chapter11\WebDriverExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WebDriverDoodleTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\packages\Selenium.WebDriver.ChromeDriver.2.21.0.0\driver\chromedriver.exe">

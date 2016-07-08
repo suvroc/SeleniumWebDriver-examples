@@ -6,8 +6,8 @@ namespace SeleniumWebDriver.Examples.Chapter07.Helpers
     {
         public ListItem(string name, IWebElement element)
         {
-            this.Name = name;
-            this.Element = element;
+            Name = name;
+            Element = element;
         }
 
         public string Name { get; set; }

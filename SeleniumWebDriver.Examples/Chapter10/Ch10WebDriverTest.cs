@@ -1,8 +1,8 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
-using System;
 
 namespace SeleniumWebDriver.Examples.Chapter10
 {
@@ -10,19 +10,36 @@ namespace SeleniumWebDriver.Examples.Chapter10
     public class Ch10WebDriverTest
     {
         [Test]
-        public void ShouldSetTimeouts()
+        public void ShouldExplicitDynamicWait()
         {
             var driver = new ChromeDriver();
 
             driver.Navigate().GoToUrl("http://getbootstrap.com/css/");
 
-            driver.Manage().Timeouts()
-                .SetScriptTimeout(TimeSpan.FromSeconds(10));
-            driver.Manage().Timeouts()
-                .SetPageLoadTimeout(TimeSpan.FromSeconds(10));
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            var myDynamicElement = wait.Until(d =>
+            {
+                return d.FindElement(By.TagName("button"));
+            });
 
             driver.Quit();
         }
+
+        [Test]
+        public void ShouldExplicitWait()
+        {
+            var driver = new ChromeDriver();
+
+            driver.Navigate().GoToUrl("http://getbootstrap.com/css/");
+
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+
+            wait.Until(ExpectedConditions.ElementToBeClickable(
+                By.TagName("button")));
+
+            driver.Quit();
+        }
+
         [Test]
         public void ShouldImplicitWait()
         {
@@ -37,34 +54,16 @@ namespace SeleniumWebDriver.Examples.Chapter10
         }
 
         [Test]
-        public void ShouldExplicitWait()
+        public void ShouldSetTimeouts()
         {
             var driver = new ChromeDriver();
 
             driver.Navigate().GoToUrl("http://getbootstrap.com/css/");
 
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-
-            // TODO: fix id
-            wait.Until(ExpectedConditions.ElementToBeClickable(
-                By.TagName("button")));
-
-            driver.Quit();
-        }
-
-        [Test]
-        public void ShouldExplicitDynamicWait()
-        {
-            var driver = new ChromeDriver();
-
-            driver.Navigate().GoToUrl("http://getbootstrap.com/css/");
-
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            IWebElement myDynamicElement = wait.Until<IWebElement>((d) =>
-            {
-                // TODO: fix id
-                return d.FindElement(By.TagName("button"));
-            });
+            driver.Manage().Timeouts()
+                .SetScriptTimeout(TimeSpan.FromSeconds(10));
+            driver.Manage().Timeouts()
+                .SetPageLoadTimeout(TimeSpan.FromSeconds(10));
 
             driver.Quit();
         }

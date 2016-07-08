@@ -1,9 +1,9 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
-using System;
 
-namespace SeleniumWebDriver.Examples.PageObjects
+namespace SeleniumWebDriver.Examples.Chapter13.PageObjects.Base
 {
     public abstract class FluentBasePageObject<T>
         where T : class

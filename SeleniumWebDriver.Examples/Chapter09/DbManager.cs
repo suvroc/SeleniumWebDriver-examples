@@ -8,31 +8,31 @@ namespace SeleniumWebDriver.Examples.Chapter09
     public class DbManager
     {
         private static DbManager _instance;
-        public static DbManager Instance
+
+        private DbManager()
         {
-            get
-            {
-                return _instance ?? (_instance = new DbManager());
-            }
         }
 
-        private DbManager() { }
+        public static DbManager Instance
+        {
+            get { return _instance ?? (_instance = new DbManager()); }
+        }
 
         public void CreateSnapshot()
         {
             var location = Path.GetTempPath();
             var createSql = string.Format(DatabaseQueries.CreateSnapshot, location);
-            this.RunScript(createSql);
+            RunScript(createSql);
         }
 
         public void RestoreSnapshot()
         {
-            this.RunScript(DatabaseQueries.RestoreSnapshot);
+            RunScript(DatabaseQueries.RestoreSnapshot);
         }
 
         public void DropSnapshot()
         {
-            this.RunScript(DatabaseQueries.DropSnapshot);
+            RunScript(DatabaseQueries.DropSnapshot);
         }
 
         private void RunScript(string script)

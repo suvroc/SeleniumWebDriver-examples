@@ -1,10 +1,10 @@
-﻿using OpenQA.Selenium;
+﻿using System;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using System;
 
 namespace SeleniumWebDriver.Examples.Chapter10
 {
-    static class WebDriverExtensions
+    internal static class WebDriverExtensions
     {
         public static IWebElement FindElement(this IWebDriver driver, By by, int timeoutInSeconds)
         {

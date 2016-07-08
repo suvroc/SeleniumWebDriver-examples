@@ -1,20 +1,20 @@
-﻿using OpenQA.Selenium;
-using System;
+﻿using System;
+using OpenQA.Selenium;
 
-namespace SeleniumWebDriver.Examples.Helpers
+namespace SeleniumWebDriver.Examples.Chapter13.Helpers
 {
-    public class NavigateButton<PageObjectType>
+    public class NavigateButton<TPageObjectType>
     {
-        private readonly Func<PageObjectType> _factory;
         private readonly IWebElement _button;
+        private readonly Func<TPageObjectType> _factory;
 
-        public NavigateButton(IWebElement button, Func<PageObjectType> factory)
+        public NavigateButton(IWebElement button, Func<TPageObjectType> factory)
         {
             _factory = factory;
             _button = button;
         }
 
-        public PageObjectType Navigate()
+        public TPageObjectType Navigate()
         {
             _button.Click();
             return _factory();

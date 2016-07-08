@@ -1,22 +1,17 @@
-﻿using NUnit.Framework;
+﻿using System;
+using System.Threading;
+using NUnit.Framework;
+using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using System;
-using System.Threading;
 using OpenQA.Selenium.Support.UI;
-using NUnit.Framework.Interfaces;
-using SeleniumWebDriver.Examples.PageObjects;
-using System.Collections;
-using OpenQA.Selenium.Support.Extensions;
 using SeleniumWebDriver.Examples.Chapter11;
 
-namespace SeleniumWebDriver.Chapter12
+namespace SeleniumWebDriver.Examples.Chapter12
 {
     [TestFixture]
     public class WebDriverDoodleTest
     {
-        private IWebDriver _driver;
-
         [SetUp]
         public void Initalize()
         {
@@ -35,6 +30,8 @@ namespace SeleniumWebDriver.Chapter12
 
             _driver.Quit();
         }
+
+        private IWebDriver _driver;
 
         [Test]
         public void ShouldCreateDoodle()
@@ -88,7 +85,7 @@ namespace SeleniumWebDriver.Chapter12
 
             waitDriver.Until(
                 ExpectedConditions.ElementToBeClickable(By.Id("participationLink")));
-            var surveyUrl = 
+            var surveyUrl =
                 _driver.FindElement(By.Id("participtionLink")).Text;
             _driver.Navigate().GoToUrl(surveyUrl);
 

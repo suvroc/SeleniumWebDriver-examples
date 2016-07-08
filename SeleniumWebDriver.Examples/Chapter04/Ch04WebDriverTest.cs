@@ -39,7 +39,7 @@ namespace SeleniumWebDriver.Examples.Chapter04
             driver.Navigate().GoToUrl(baseURL + "/#en/pl/cat");
             driver.FindElement(By.Id("source")).Clear();
             driver.FindElement(By.Id("source")).SendKeys("cat");
-            for (int second = 0; ; second++)
+            for (var second = 0;; second++)
             {
                 if (second >= 60) Assert.Fail("timeout");
                 try
@@ -54,7 +54,5 @@ namespace SeleniumWebDriver.Examples.Chapter04
             }
             Assert.AreEqual("kot", driver.FindElement(By.Id("result_box")).Text);
         }
-
-
     }
 }
