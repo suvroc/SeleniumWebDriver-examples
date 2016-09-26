@@ -32,7 +32,7 @@ namespace SeleniumWebDriver.Examples.Chapter07
 
             var element = driver.FindElement(By.CssSelector("#doodleExample > div.wizardOrExample.spaceBBefore > a"));
 
-            Assert.IsTrue(element.Text == "View example");
+            Assert.IsTrue(element.Text.Contains("Schedule an event"));
 
             driver.Quit();
         }
@@ -44,9 +44,9 @@ namespace SeleniumWebDriver.Examples.Chapter07
 
             driver.Navigate().GoToUrl("http://doodle.com/en_GB/");
 
-            var element = driver.FindElement(By.ClassName("createExample"));
+            var element = driver.FindElement(By.Id("createExample"));
 
-            Assert.IsTrue(element.Text == "View example");
+            Assert.IsTrue(element.Text.Contains("View example"));
 
             driver.Quit();
         }
@@ -60,7 +60,7 @@ namespace SeleniumWebDriver.Examples.Chapter07
 
             var element = (IWebElement) ((IJavaScriptExecutor) driver).ExecuteScript("return $('#createExample')[0]");
 
-            Assert.IsTrue(element.Text == "Schedule an event");
+            Assert.IsTrue(element.Text.Contains("View example"));
 
             driver.Quit();
         }
@@ -72,9 +72,9 @@ namespace SeleniumWebDriver.Examples.Chapter07
 
             driver.Navigate().GoToUrl("http://doodle.com/en_GB/");
 
-            var element = driver.FindElement(By.LinkText("Schedule an event"));
+            var element = driver.FindElement(By.LinkText("Features"));
 
-            Assert.IsTrue(element.Text.Trim() == "Schedule an event");
+            Assert.IsTrue(element.Text.Contains("Features"));
 
             driver.Quit();
         }
@@ -102,7 +102,7 @@ namespace SeleniumWebDriver.Examples.Chapter07
 
             var element = driver.FindElement(By.PartialLinkText("Schedule"));
 
-            Assert.IsTrue(element.Text == "Schedule an event");
+            Assert.IsTrue(element.Text.Contains("Schedule an event"));
 
             driver.Quit();
         }
@@ -130,7 +130,7 @@ namespace SeleniumWebDriver.Examples.Chapter07
 
             var element = driver.FindElement(By.XPath("//*[@id='doodleExample']/div[1]/a"));
 
-            Assert.IsTrue(element.Text == "");
+            Assert.IsTrue(element.Text.Contains("Schedule an event"));
 
             driver.Quit();
         }
@@ -162,7 +162,7 @@ namespace SeleniumWebDriver.Examples.Chapter07
                 .Select(x => new ListItem(
                     x.FindElement(By.CssSelector(".gallerytext > a")).Text, x));
 
-            var houseTile = houseTiles.Single(x => x.Name == "Buiding.jpg");
+            var houseTile = houseTiles.First();
 
             var link = houseTile.Element
                 .FindElement(By.ClassName("thumb"));

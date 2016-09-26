@@ -2,7 +2,10 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Interactions;
+using OpenQA.Selenium.Internal;
 using OpenQA.Selenium.Support.UI;
+using System;
+using System.Collections.Generic;
 
 namespace SeleniumWebDriver.Examples.Chapter08
 {
@@ -16,7 +19,7 @@ namespace SeleniumWebDriver.Examples.Chapter08
 
             driver.Navigate().GoToUrl("http://doodle.com/en_GB/");
 
-            var element = driver.FindElement(By.ClassName("createExample"));
+            var element = driver.FindElement(By.Id("createExample"));
 
             Assert.IsTrue(element.Displayed);
             Assert.IsTrue(element.Enabled);
@@ -80,7 +83,7 @@ namespace SeleniumWebDriver.Examples.Chapter08
             var action = new Actions(driver);
             var saveShortcut = action.ContextClick(element)
                 .KeyDown(Keys.Control)
-                .KeyDown("C")
+                .SendKeys("C")
                 .Build();
 
             saveShortcut.Perform();
@@ -115,7 +118,7 @@ namespace SeleniumWebDriver.Examples.Chapter08
             var action = new Actions(driver);
             var saveShortcut = action.ContextClick(element)
                 .KeyDown(Keys.Control)
-                .KeyDown("S")
+                .SendKeys("S")
                 .Build();
 
             saveShortcut.Perform();
@@ -150,10 +153,10 @@ namespace SeleniumWebDriver.Examples.Chapter08
             var selectElement = new SelectElement(element);
 
             selectElement.SelectByText("2");
-            selectElement.SelectByValue("2");
+            //selectElement.SelectByValue("2"); // this example select hasn't value defined
             selectElement.SelectByIndex(2);
 
-            selectElement.SelectByIndex(5);
+            selectElement.SelectByIndex(4);
 
             driver.Quit();
         }
@@ -180,7 +183,14 @@ namespace SeleniumWebDriver.Examples.Chapter08
         [Test]
         public void ShouldTouch()
         {
-            var driver = new ChromeDriver();
+
+            //Dictionary<String, String> mobileEmulation = new Dictionary<String, String>();
+            //mobileEmulation.Add("deviceName", "Nexus 5");
+            ChromeOptions chromeCapabilities = new ChromeOptions();
+            chromeCapabilities.EnableMobileEmulation("Google Nexus 5");
+            var driver = new ChromeDriver(chromeCapabilities); 
+
+            IHasTouchScreen touchScreenDriver = driver as IHasTouchScreen;
 
             driver.Navigate().GoToUrl("https://en.wikipedia.org/wiki/Main_Page");
 

@@ -14,7 +14,7 @@ namespace SeleniumWebDriver.Examples.Chapter09
 
             driver.Navigate().GoToUrl("http://doodle.com/en_GB/");
 
-            var element = driver.FindElement(By.ClassName("createExample"));
+            var element = driver.FindElement(By.Id("createExample"));
 
             Assert.IsTrue(element.Displayed);
             Assert.IsTrue(element.Enabled);
