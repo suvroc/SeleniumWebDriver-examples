@@ -7,6 +7,7 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using SeleniumWebDriver.Examples.Chapter11;
 using SeleniumWebDriver.Examples.Chapter13.PageObjects;
+using OpenQA.Selenium.Support.PageObjects;
 
 namespace SeleniumWebDriver.Examples.Chapter13
 {
@@ -107,7 +108,7 @@ namespace SeleniumWebDriver.Examples.Chapter13
             Assert.AreEqual(_driver.Url, "http://doodle.com/create");
 
 
-            var nameScreenPageObject = new NameScreenAttrPageObject(_driver);
+            var nameScreenPageObject = PageFactory.InitElements<NameScreenAttrPageObject>(_driver); // new NameScreenAttrPageObject(_driver);
 
             nameScreenPageObject
                 .Then(x => x.TitleInput.SendKeys("Diwebsity test doodle"))

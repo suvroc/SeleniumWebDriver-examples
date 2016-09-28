@@ -34,7 +34,7 @@ namespace SeleniumWebDriver.Examples.Chapter10
 
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
 
-            wait.Until(ExpectedConditions.ElementToBeClickable(
+            wait.Until(ExpectedConditions.ElementExists(
                 By.TagName("button")));
 
             driver.Quit();

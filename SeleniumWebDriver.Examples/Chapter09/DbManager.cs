@@ -8,9 +8,11 @@ namespace SeleniumWebDriver.Examples.Chapter09
     public class DbManager
     {
         private static DbManager _instance;
+        private bool _databaseTesting;
 
         private DbManager()
         {
+            _databaseTesting = ConfigurationManager.AppSettings["databaseTests"] == "true";
         }
 
         public static DbManager Instance
@@ -37,21 +39,24 @@ namespace SeleniumWebDriver.Examples.Chapter09
 
         private void RunScript(string script)
         {
-            try
+            if (_databaseTesting)
             {
-                using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Test"].ConnectionString))
+                try
                 {
-                    conn.Open();
-                    using (var command = conn.CreateCommand())
+                    using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Test"].ConnectionString))
                     {
-                        command.CommandText = script;
-                        command.ExecuteNonQuery();
+                        conn.Open();
+                        using (var command = conn.CreateCommand())
+                        {
+                            command.CommandText = script;
+                            command.ExecuteNonQuery();
+                        }
                     }
                 }
-            }
-            catch (Exception e)
-            {
-                throw;
+                catch (Exception e)
+                {
+                    throw;
+                }
             }
         }
     }

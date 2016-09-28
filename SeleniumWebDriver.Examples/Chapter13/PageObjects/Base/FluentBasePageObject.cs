@@ -11,6 +11,7 @@ namespace SeleniumWebDriver.Examples.Chapter13.PageObjects.Base
         public FluentBasePageObject(IWebDriver driver)
         {
             Driver = driver;
+            PageFactory.InitElements(Driver, this);
             PageFactory.InitElements(this, new RetryingElementLocator(driver, TimeSpan.FromSeconds(10)));
         }
 

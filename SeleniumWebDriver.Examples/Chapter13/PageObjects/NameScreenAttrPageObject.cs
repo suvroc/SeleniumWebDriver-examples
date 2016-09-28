@@ -22,6 +22,9 @@ namespace SeleniumWebDriver.Examples.Chapter13.PageObjects
             }
         }
 
+        [FindsBy(How = How.CssSelector, Using = "#dynamicHeader > div > div > nav > div > div.navbar-header > a > div")]
+        public IWebElement aaa { get; set; }
+
         [FindsBy(How = How.Id, Using = "title")]
         public IWebElement TitleInput { get; }
 
