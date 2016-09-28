@@ -3,6 +3,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Internal;
+using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
@@ -188,9 +189,7 @@ namespace SeleniumWebDriver.Examples.Chapter08
             //mobileEmulation.Add("deviceName", "Nexus 5");
             ChromeOptions chromeCapabilities = new ChromeOptions();
             chromeCapabilities.EnableMobileEmulation("Google Nexus 5");
-            var driver = new ChromeDriver(chromeCapabilities); 
-
-            IHasTouchScreen touchScreenDriver = driver as IHasTouchScreen;
+            var driver = new TouchCapableChromeDriver();
 
             driver.Navigate().GoToUrl("https://en.wikipedia.org/wiki/Main_Page");
 
@@ -210,13 +209,13 @@ namespace SeleniumWebDriver.Examples.Chapter08
 
             driver.Navigate().GoToUrl("http://postimage.org/");
 
-            var element = driver.FindElement(By.Id("file_upload"));
+            var element = driver.FindElement(By.CssSelector("[type='file']"));
 
             element.SendKeys(TestContext.CurrentContext.TestDirectory + "\\TestFiles\\TestFile.png");
 
-            driver.FindElement(By.Id("l_adult_no")).Click();
+            //driver.FindElement(By.Id("l_adult_no")).Click();
 
-            driver.FindElement(By.Id("btSubmit")).Click();
+            //driver.FindElement(By.Id("btSubmit")).Click();
 
             driver.Quit();
         }
