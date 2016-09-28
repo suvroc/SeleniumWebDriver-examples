@@ -33,22 +33,22 @@ namespace SeleniumWebDriver.Examples.Chapter14
 
         private IWebDriver _driver;
 
-        public IEnumerable TestCases
+        public static IEnumerable TestCases
         {
             get
             {
                 yield return new TestCaseData(
                     "Diwebsity test doodle", "Diwebsity tester",
-                    "seleniumTester@diwebsity.com")
+                    "seleniumTester@diwebsity.com", true)
                     .Returns("/create#dates");
                 yield return new TestCaseData(
                     "Another title", "Another name",
-                    "Another_email@mail.comm")
+                    "Another_email@mail.comm", true)
                     .Returns("/create#dates");
                 yield return new TestCaseData(
                     "Another title", "Another name",
-                    "wrong email")
-                    .Returns("/create#");
+                    "wrong email", false)
+                    .Returns("/create#general");
             }
         }
 
@@ -66,13 +66,13 @@ namespace SeleniumWebDriver.Examples.Chapter14
             scheduleEventButton.Click();
             Assert.AreEqual(_driver.Url, "http://doodle.com/create");
 
-            var nameScreenPageObject = new NameScreenAttrPageObject(_driver);
+            var nameScreenPageObject = new NameScreenPageObject(_driver);
 
             nameScreenPageObject
                 .FillData(title,
                     name,
                     email)
-                .NextButton.Navigate();
+                .NextButtonObject.Navigate();
 
             if (goToNextPage)
             {
@@ -80,7 +80,7 @@ namespace SeleniumWebDriver.Examples.Chapter14
             }
             else
             {
-                Assert.IsTrue(_driver.Url.EndsWith("/create#"));
+                Assert.IsTrue(_driver.Url.EndsWith("/create#general"));
             }
         }
 
@@ -96,13 +96,13 @@ namespace SeleniumWebDriver.Examples.Chapter14
             scheduleEventButton.Click();
             Assert.AreEqual(_driver.Url, "http://doodle.com/create");
 
-            var nameScreenPageObject = new NameScreenAttrPageObject(_driver);
+            var nameScreenPageObject = new NameScreenPageObject(_driver);
 
             nameScreenPageObject
                 .FillData(title,
                     name,
                     email)
-                .NextButton.Navigate();
+                .NextButtonObject.Navigate();
 
             return _driver.Url.Substring(_driver.Url.LastIndexOf('/'));
         }

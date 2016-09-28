@@ -54,11 +54,11 @@ namespace SeleniumWebDriver.Examples.Chapter12
             _driver.FindElement(By.Id("next1"))
                 .Click();
 
-            var dateId = "cell" + DateTime.Now.ToString("yyyyMMdd") + " > div > div > button";
+            var dateId = "#cell" + DateTime.Now.ToString("yyyyMMdd") + " > div > div > button";
             var waitDriver = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
             waitDriver.Until(
-                ExpectedConditions.ElementToBeClickable(By.Id(dateId)));
-            _driver.FindElement(By.Id(dateId))
+                ExpectedConditions.ElementToBeClickable(By.CssSelector(dateId)));
+            _driver.FindElement(By.CssSelector(dateId))
                 .Click();
             _driver.FindElement(By.Id("next2a"))
                 .Click();
@@ -86,7 +86,7 @@ namespace SeleniumWebDriver.Examples.Chapter12
             waitDriver.Until(
                 ExpectedConditions.ElementToBeClickable(By.Id("participationLink")));
             var surveyUrl =
-                _driver.FindElement(By.Id("participtionLink")).Text;
+                _driver.FindElement(By.Id("participationLink")).Text;
             _driver.Navigate().GoToUrl(surveyUrl);
 
             Assert.AreEqual(_driver.FindElement(By.Id("pollTitle")).Text,

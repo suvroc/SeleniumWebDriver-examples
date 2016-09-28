@@ -21,7 +21,7 @@ namespace SeleniumWebDriver.Examples.Chapter11
             catch (Exception ex)
             {
                 driver.TakeScreenshot("ShouldThrowException");
-                throw;
+                // throw;
             }
             finally
             {
