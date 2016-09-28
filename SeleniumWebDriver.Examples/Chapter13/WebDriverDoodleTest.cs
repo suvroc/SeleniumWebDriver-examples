@@ -121,6 +121,7 @@ namespace SeleniumWebDriver.Examples.Chapter13
         public void ShouldCreateDoodlePageObjectWithAttributes()
         {
             _driver.Navigate().GoToUrl("http://doodle.com/en_GB/");
+            _driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(10));
 
             var scheduleEventButton = _driver.FindElement(
                 By.CssSelector("#doodleExample > div.wizardOrExample.spaceBBefore > a"));

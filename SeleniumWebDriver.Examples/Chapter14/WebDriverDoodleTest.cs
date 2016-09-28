@@ -6,6 +6,8 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using SeleniumWebDriver.Examples.Chapter11;
 using SeleniumWebDriver.Examples.Chapter13.PageObjects;
+using System.Threading;
+using OpenQA.Selenium.Support.UI;
 
 namespace SeleniumWebDriver.Examples.Chapter14
 {
@@ -43,7 +45,7 @@ namespace SeleniumWebDriver.Examples.Chapter14
                     .Returns("/create#dates");
                 yield return new TestCaseData(
                     "Another title", "Another name",
-                    "Another_email@mail.comm", true)
+                    "Another_email@supermail.com", true)
                     .Returns("/create#dates");
                 yield return new TestCaseData(
                     "Another title", "Another name",
@@ -54,7 +56,7 @@ namespace SeleniumWebDriver.Examples.Chapter14
 
         [Test]
         [TestCase("Diwebsity test doodle", "Diwebsity tester", "seleniumTester@diwebsity.com", true)]
-        [TestCase("Another title", "Another name", "Another_email@mail.comm", true)]
+        [TestCase("Another title", "Another name", "Another_email@supermail.com", true)]
         [TestCase("Another title", "Another name", "wrong email", false)]
         public void ShouldCreateDoodleWithTestCase(
             string title, string name, string email, bool goToNextPage)
@@ -73,6 +75,8 @@ namespace SeleniumWebDriver.Examples.Chapter14
                     name,
                     email)
                 .NextButtonObject.Navigate();
+
+            Thread.Sleep(1000);
 
             if (goToNextPage)
             {
@@ -103,6 +107,9 @@ namespace SeleniumWebDriver.Examples.Chapter14
                     name,
                     email)
                 .NextButtonObject.Navigate();
+
+            Thread.Sleep(1000);
+            var aaa = _driver.Url;
 
             return _driver.Url.Substring(_driver.Url.LastIndexOf('/'));
         }
