@@ -2,6 +2,7 @@
 using OpenQA.Selenium.Support.PageObjects;
 using SeleniumWebDriver.Examples.Chapter13.Helpers;
 using SeleniumWebDriver.Examples.Chapter13.PageObjects.Base;
+using System;
 
 namespace SeleniumWebDriver.Examples.Chapter13.PageObjects
 {
@@ -22,26 +23,23 @@ namespace SeleniumWebDriver.Examples.Chapter13.PageObjects
             }
         }
 
-        [FindsBy(How = How.CssSelector, Using = "#dynamicHeader > div > div > nav > div > div.navbar-header > a > div")]
-        public IWebElement aaa { get; set; }
-
         [FindsBy(How = How.Id, Using = "title")]
-        public IWebElement TitleInput { get; }
+        public IWebElement TitleInput { get; set; }
 
         [FindsBy(How = How.Id, Using = "location")]
-        public IWebElement LocationInput { get; }
+        public IWebElement LocationInput { get; set; }
 
         [FindsBy(How = How.Id, Using = "description")]
-        public IWebElement DescriptionInput { get; }
+        public IWebElement DescriptionInput { get; set; }
 
         [FindsBy(How = How.Id, Using = "initiatorAlias")]
-        public IWebElement YourNameInput { get; }
+        public IWebElement YourNameInput { get; set; }
 
         [FindsBy(How = How.Id, Using = "initiatorEmail")]
-        public IWebElement EmailInput { get; }
+        public IWebElement EmailInput { get; set; }
 
         [FindsBy(How = How.Id, Using = "back1")]
-        public IWebElement BackButton { get; }
+        public IWebElement BackButton { get; set; }
 
         public NameScreenAttrPageObject FillData(string title, string name, string email)
         {
