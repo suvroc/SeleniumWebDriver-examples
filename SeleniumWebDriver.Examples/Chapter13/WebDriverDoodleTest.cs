@@ -108,7 +108,7 @@ namespace SeleniumWebDriver.Examples.Chapter13
             Assert.AreEqual(_driver.Url, "http://doodle.com/create");
 
 
-            var nameScreenPageObject = PageFactory.InitElements<NameScreenAttrPageObject>(_driver); // new NameScreenAttrPageObject(_driver);
+            var nameScreenPageObject = new NameScreenAttrPageObject(_driver);
 
             nameScreenPageObject
                 .Then(x => x.TitleInput.SendKeys("Diwebsity test doodle"))

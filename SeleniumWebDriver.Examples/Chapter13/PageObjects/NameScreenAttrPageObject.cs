@@ -24,7 +24,7 @@ namespace SeleniumWebDriver.Examples.Chapter13.PageObjects
         }
 
         [FindsBy(How = How.Id, Using = "title")]
-        public IWebElement TitleInput { get; set; }
+        public IWebElement TitleInput { get; set; } // setter is necessary
 
         [FindsBy(How = How.Id, Using = "location")]
         public IWebElement LocationInput { get; set; }
