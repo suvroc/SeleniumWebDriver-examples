@@ -62,8 +62,8 @@
       <HintPath>..\packages\SpecFlow.2.1.0\lib\net45\TechTalk.SpecFlow.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="WebDriver, Version=2.53.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Selenium.WebDriver.2.53.1\lib\net40\WebDriver.dll</HintPath>
+    <Reference Include="WebDriver, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Selenium.WebDriver.3.0.0\lib\net40\WebDriver.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="WebDriver.Support, Version=2.53.1.0, Culture=neutral, processorArchitecture=MSIL">
@@ -72,6 +72,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Appendix1\A1_AccessibilityTesting.cs" />
+    <Compile Include="Appendix1\A1_MultipleBrowserTest.cs" />
     <Compile Include="Chapter04\BasicNUnitTests.cs" />
     <Compile Include="Chapter04\Ch04WebDriverTest.cs" />
     <Compile Include="Chapter06\Ch06WebDriverTest.cs" />
@@ -117,6 +119,7 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="WAVE-Evaluation-Tool_v1.0.1.crx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Chapter15\SpecFlowFeature1.feature">
@@ -146,6 +149,13 @@
       <Link>wires-0.6.0-win.exe</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="..\packages\WebDriver.GeckoDriver.0.9.0\content\wires.exe">
+      <Link>wires.exe</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="geckodriver.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Readme.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
@@ -155,9 +165,9 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Selenium.WebDriver.ChromeDriver.2.24.0.0\build\Selenium.WebDriver.ChromeDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Selenium.WebDriver.ChromeDriver.2.24.0.0\build\Selenium.WebDriver.ChromeDriver.targets'))" />
-    <Error Condition="!Exists('..\packages\Selenium.WebDriver.IEDriver.2.53.1.1\build\Selenium.WebDriver.IEDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Selenium.WebDriver.IEDriver.2.53.1.1\build\Selenium.WebDriver.IEDriver.targets'))" />
+    <Error Condition="!Exists('..\packages\Selenium.WebDriver.IEDriver.3.0.0.0\build\Selenium.WebDriver.IEDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Selenium.WebDriver.IEDriver.3.0.0.0\build\Selenium.WebDriver.IEDriver.targets'))" />
   </Target>
-  <Import Project="..\packages\Selenium.WebDriver.IEDriver.2.53.1.1\build\Selenium.WebDriver.IEDriver.targets" Condition="Exists('..\packages\Selenium.WebDriver.IEDriver.2.53.1.1\build\Selenium.WebDriver.IEDriver.targets')" />
+  <Import Project="..\packages\Selenium.WebDriver.IEDriver.3.0.0.0\build\Selenium.WebDriver.IEDriver.targets" Condition="Exists('..\packages\Selenium.WebDriver.IEDriver.3.0.0.0\build\Selenium.WebDriver.IEDriver.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
